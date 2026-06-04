@@ -89,7 +89,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.0, ease }}
           className="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10"
-          style={{ color: 'oklch(68% 0 0)' }}
+          style={{ color: 'var(--body)' }}
         >
           From architecting AWS partner platforms powering billion-dollar programs to shipping
           HR applications used by 300K+ people — I build software that performs at scale.

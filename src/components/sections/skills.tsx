@@ -24,19 +24,23 @@ export function Skills() {
         {/* Featured AI card */}
         {featured && (
           <FadeIn className="mb-8">
-            <div className="glass-gradient-border p-10">
+            <div className="glass rounded-2xl p-10 relative overflow-hidden">
+              <div
+                className="absolute left-0 top-0 bottom-0 w-[3px]"
+                style={{ background: 'linear-gradient(to bottom, var(--accent), var(--accent2), var(--accent3))' }}
+              />
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-5">
                 <div>
-                  <p className="text-xs font-mono uppercase tracking-[0.25em] mb-2 gradient-text font-semibold">
+                  <p className="text-xs font-mono uppercase tracking-[0.25em] mb-2 text-fg font-semibold">
                     {featured.name}
                   </p>
-                  <p className="text-sm leading-relaxed max-w-xl" style={{ color: 'var(--body)' }}>
+                  <p className="text-sm leading-relaxed max-w-xl" style={{ color: 'var(--fg)' }}>
                     {featured.description}
                   </p>
                 </div>
                 <span
                   className="self-start text-xs font-mono px-3 py-1.5 rounded-full border whitespace-nowrap"
-                  style={{ borderColor: 'var(--accent)', color: 'var(--accent)', background: 'oklch(72% 0.19 270 / 0.08)' }}
+                  style={{ borderColor: 'var(--accent)', color: 'var(--fg)', background: 'oklch(72% 0.19 270 / 0.15)' }}
                 >
                   Primary expertise
                 </span>
