@@ -1,3 +1,4 @@
+import { motion } from 'motion/react'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Stagger, StaggerItem } from '@/components/motion/stagger'
 import { GradientText } from '@/components/ui/gradient-text'
@@ -8,10 +9,10 @@ export function Skills() {
   const rest = skillCategories.filter((c) => !c.featured)
 
   return (
-    <section id="skills" className="relative py-20 px-6 section-gradient-pink">
+    <section id="skills" className="relative py-12 md:py-20 px-6 section-gradient-pink">
       <div className="max-w-5xl mx-auto">
         {/* Heading */}
-        <FadeIn className="mb-16 text-center">
+        <FadeIn className="mb-10 md:mb-16 text-center">
           <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--muted)' }}>Skills</p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1]">
             Built to be <GradientText>AI-first</GradientText>
@@ -68,9 +69,10 @@ export function Skills() {
         <Stagger className="grid sm:grid-cols-3 gap-6">
           {rest.map((category) => (
             <StaggerItem key={category.name}>
-              <div
-                className="glass rounded-2xl p-8 h-full transition-all duration-300"
-                style={{ '--hover-border': 'oklch(72% 0.19 270 / 0.25)' } as React.CSSProperties}
+              <motion.div
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
+                className="glass rounded-2xl p-8 h-full"
               >
                 <h3 className="text-xs font-mono uppercase tracking-[0.22em] mb-6" style={{ color: 'var(--body)' }}>
                   {category.name}
@@ -90,7 +92,7 @@ export function Skills() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             </StaggerItem>
           ))}
         </Stagger>

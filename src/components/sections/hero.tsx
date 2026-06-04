@@ -1,39 +1,23 @@
-import { motion } from 'motion/react'
+import { motion, useScroll, useTransform } from 'motion/react'
 import { ArrowDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { LinkedinIcon } from '@/components/ui/brand-icons'
 
 const ease = [0.25, 0.4, 0.25, 1] as const
 
-function AnimatedWord({ word, delay }: { word: string; delay: number }) {
-  return (
-    <>
-      <span style={{ overflow: 'hidden', display: 'inline-block' }}>
-        <motion.span
-          style={{ display: 'inline-block' }}
-          initial={{ y: '110%', opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.65, delay, ease }}
-        >
-          {word}
-        </motion.span>
-      </span>
-      {' '}
-    </>
-  )
-}
-
-function AnimatedHeading({ text, delay }: { text: string; delay: number }) {
-  return (
-    <>
-      {text.split(' ').map((word, i) => (
-        <AnimatedWord key={i} word={word} delay={delay + i * 0.07} />
-      ))}
-    </>
-  )
+function reveal(delay: number) {
+  return {
+    initial: { opacity: 0, filter: 'blur(10px)' },
+    animate: { opacity: 1, filter: 'blur(0px)' },
+    transition: { duration: 0.55, delay, ease },
+  }
 }
 
 export function Hero() {
+  const { scrollY } = useScroll()
+  const orb1Y = useTransform(scrollY, [0, 600], [0, -80])
+  const orb2Y = useTransform(scrollY, [0, 600], [0, 50])
+
   function scrollToWork() {
     document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })
   }
@@ -43,29 +27,22 @@ export function Hero() {
 
   return (
     <section className="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden px-6">
-      {/* Full-bleed mesh gradient — bold, iPhone-style */}
       <div className="absolute inset-0 mesh-bg pointer-events-none" />
 
-      {/* Corner orbs — kept at the periphery so they don't collide with center text */}
-      <div
+      <motion.div
+        style={{ y: orb1Y, background: 'var(--accent)' }}
         className="absolute -top-48 -left-48 w-[700px] h-[700px] rounded-full pointer-events-none blur-3xl opacity-40 animate-glow"
-        style={{ background: 'var(--accent)' }}
       />
-      <div
+      <motion.div
+        style={{ y: orb2Y, background: 'var(--accent3)' }}
         className="absolute -bottom-48 -right-48 w-[700px] h-[700px] rounded-full pointer-events-none blur-3xl opacity-35 animate-glow"
-        style={{ background: 'var(--accent3)', animationDelay: '1.5s' }}
       />
 
-      {/* Dark center vignette — keeps text readable against the vivid gradient edges */}
       <div className="absolute inset-0 hero-text-shield pointer-events-none" />
 
-      {/* Content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto">
-        {/* Availability badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1, ease }}
+        {/* Badge */}
+        <motion.div {...reveal(0)}
           className="inline-flex items-center gap-2 glass border border-border rounded-full px-4 py-1.5 text-xs font-mono mb-8"
           style={{ color: 'var(--body)' }}
         >
@@ -73,21 +50,19 @@ export function Hero() {
           Open to new opportunities
         </motion.div>
 
-        {/* Heading — uses animate (not whileInView) since it's above the fold */}
-        <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold tracking-tight leading-[1.1] mb-6">
-          <span className="block" style={{ color: 'var(--fg)' }}>
-            <AnimatedHeading text="Hi, I'm Prasanth" delay={0.2} />
-          </span>
-          <span className="block mt-2 gradient-text-hero">
-            <AnimatedHeading text="Senior Full-Stack Engineer" delay={0.55} />
-          </span>
+        {/* Heading */}
+        <h1 className="text-[3.5rem] sm:text-[4.25rem] md:text-[5.7rem] font-bold tracking-tight leading-[1.2] mb-6">
+          <motion.span {...reveal(0.08)} className="block" style={{ color: 'var(--fg)' }}>
+            Hi, I'm Prasanth
+          </motion.span>
+          <motion.span {...reveal(0.18)} className="block mt-2 gradient-text-hero">
+            Senior Full-Stack Engineer
+          </motion.span>
         </h1>
 
         {/* Tagline */}
         <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.0, ease }}
+          {...reveal(0.28)}
           className="text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed mb-10"
           style={{ color: 'var(--body)' }}
         >
@@ -97,9 +72,7 @@ export function Hero() {
 
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 1.2, ease }}
+          {...reveal(0.38)}
           className="flex flex-col sm:flex-row items-center justify-center gap-3"
         >
           <Button onClick={scrollToWork}>View my work</Button>
@@ -123,9 +96,7 @@ export function Hero() {
 
       {/* Scroll indicator */}
       <motion.button
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.8, duration: 0.6 }}
+        {...reveal(0.55)}
         onClick={scrollToWork}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 transition-colors cursor-pointer"
         style={{ color: 'var(--muted)' }}

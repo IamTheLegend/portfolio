@@ -1,4 +1,5 @@
-@import "@fontsource-variable/geist";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/manrope";
 @import "@fontsource-variable/geist-mono";
 @import "tailwindcss";
 
@@ -44,7 +45,8 @@
   --color-border: var(--border);
   --color-card: var(--card);
   --color-surface: var(--surface);
-  --font-sans: "Geist Variable", system-ui, sans-serif;
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-display: "Manrope Variable", sans-serif;
   --font-mono: "Geist Mono Variable", monospace;
 }
 
@@ -56,6 +58,7 @@
 html {
   color-scheme: dark;
   scroll-behavior: auto;
+  overflow-x: hidden;
 }
 
 html[data-theme="light"] {
@@ -66,7 +69,7 @@ body {
   margin: 0;
   background-color: var(--bg);
   color: var(--fg);
-  font-family: "Geist Variable", system-ui, sans-serif;
+  font-family: "Inter Variable", system-ui, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -191,28 +194,41 @@ a {
 
 /* ── Section accent gradients ──────────────────────────────────────── */
 .section-gradient-violet {
-  background-image: radial-gradient(ellipse 80% 60% at 10% 50%, oklch(72% 0.19 270 / 0.12) 0%, transparent 60%);
+  background-image: radial-gradient(ellipse 80% 60% at 10% 50%, oklch(72% 0.19 270 / 0.22) 0%, transparent 60%);
 }
 
 .section-gradient-cyan {
-  background-image: radial-gradient(ellipse 70% 60% at 90% 40%, oklch(72% 0.18 200 / 0.11) 0%, transparent 60%);
+  background-image: radial-gradient(ellipse 70% 60% at 90% 40%, oklch(72% 0.18 200 / 0.20) 0%, transparent 60%);
 }
 
 .section-gradient-pink {
-  background-image: radial-gradient(ellipse 75% 55% at 50% 60%, oklch(72% 0.20 330 / 0.10) 0%, transparent 58%);
+  background-image: radial-gradient(ellipse 75% 55% at 50% 60%, oklch(72% 0.20 330 / 0.19) 0%, transparent 58%);
 }
 
 [data-theme="light"] .section-gradient-violet {
-  background-image: radial-gradient(ellipse 80% 60% at 10% 50%, oklch(72% 0.19 270 / 0.06) 0%, transparent 60%);
+  background-image: radial-gradient(ellipse 80% 60% at 10% 50%, oklch(72% 0.19 270 / 0.10) 0%, transparent 60%);
 }
 [data-theme="light"] .section-gradient-cyan {
-  background-image: radial-gradient(ellipse 70% 60% at 90% 40%, oklch(72% 0.18 200 / 0.05) 0%, transparent 60%);
+  background-image: radial-gradient(ellipse 70% 60% at 90% 40%, oklch(72% 0.18 200 / 0.09) 0%, transparent 60%);
 }
 [data-theme="light"] .section-gradient-pink {
-  background-image: radial-gradient(ellipse 75% 55% at 50% 60%, oklch(72% 0.20 330 / 0.05) 0%, transparent 58%);
+  background-image: radial-gradient(ellipse 75% 55% at 50% 60%, oklch(72% 0.20 330 / 0.09) 0%, transparent 58%);
 }
 
 /* ── Animations ────────────────────────────────────────────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
 @keyframes gradient-shift {
   0% { background-position: 0% center; }
   100% { background-position: 300% center; }

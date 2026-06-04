@@ -1,15 +1,50 @@
+import { useRef } from 'react'
+import { motion } from 'motion/react'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Stagger, StaggerItem } from '@/components/motion/stagger'
 import { Badge } from '@/components/ui/badge'
 import { GradientText } from '@/components/ui/gradient-text'
 import { workEntries } from '@/data/work'
 
+function TiltCard({ children, className }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+
+  function onMove(e: React.MouseEvent<HTMLDivElement>) {
+    const el = ref.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    el.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 4}deg) translateY(-4px)`
+    el.style.boxShadow = '0 16px 48px oklch(72% 0.19 270 / 0.18), 0 0 0 1px oklch(72% 0.19 270 / 0.22)'
+  }
+
+  function onLeave() {
+    const el = ref.current
+    if (!el) return
+    el.style.transform = ''
+    el.style.boxShadow = ''
+  }
+
+  return (
+    <div
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className={className}
+      style={{ transition: 'transform 0.15s ease' }}
+    >
+      {children}
+    </div>
+  )
+}
+
 export function Work() {
   return (
-    <section id="work" className="relative py-20 px-6 section-gradient-cyan">
+    <section id="work" className="relative py-12 md:py-20 px-6 section-gradient-cyan">
       <div className="max-w-5xl mx-auto">
         {/* Heading */}
-        <FadeIn className="mb-16">
+        <FadeIn className="mb-10 md:mb-16">
           <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--muted)' }}>Experience</p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1]">
             Where I've <GradientText>worked</GradientText>
@@ -19,7 +54,14 @@ export function Work() {
         {/* Timeline */}
         <Stagger className="relative">
           {/* Vertical line */}
-          <div className="absolute left-0 top-2 bottom-2 w-px bg-border hidden md:block" />
+          <motion.div
+            className="absolute left-0 top-2 bottom-2 w-px bg-border hidden md:block"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 1.2, ease: [0.25, 0.4, 0.25, 1] }}
+            style={{ transformOrigin: 'top' }}
+          />
 
           {workEntries.map((entry, i) => (
             <StaggerItem key={i}>
@@ -30,7 +72,7 @@ export function Work() {
                   style={{ background: 'var(--bg)' }}
                 />
 
-                <div className="glass rounded-2xl p-8 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:shadow-accent/5">
+                <TiltCard className="glass rounded-2xl p-8 hover:border-accent/30 transition-colors duration-300 hover:shadow-lg hover:shadow-accent/5">
                   {/* Header */}
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                     <div>
@@ -64,7 +106,7 @@ export function Work() {
                       <Badge key={tag}>{tag}</Badge>
                     ))}
                   </div>
-                </div>
+                </TiltCard>
               </div>
             </StaggerItem>
           ))}

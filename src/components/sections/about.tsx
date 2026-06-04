@@ -1,18 +1,38 @@
+import { useRef, useEffect, useState } from 'react'
+import { useInView, animate } from 'motion/react'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Stagger, StaggerItem } from '@/components/motion/stagger'
 import { GradientText } from '@/components/ui/gradient-text'
 
 const stats = [
-  { value: '11+', label: 'Years of professional experience' },
-  { value: '1M+', label: 'Active users served' },
-  { value: '$12M+', label: 'In savings delivered' },
+  { prefix: '', value: 11, suffix: '+', label: 'Years of professional experience' },
+  { prefix: '', value: 1, suffix: 'M+', label: 'Active users served' },
+  { prefix: '$', value: 12, suffix: 'M+', label: 'In savings delivered' },
 ]
+
+function CountUp({ to, prefix = '', suffix = '' }: { to: number; prefix?: string; suffix?: string }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-60px' })
+  const [display, setDisplay] = useState(0)
+
+  useEffect(() => {
+    if (!inView) return
+    const controls = animate(0, to, {
+      duration: 1.5,
+      ease: [0.25, 0.4, 0.25, 1],
+      onUpdate: (v) => setDisplay(Math.round(v)),
+    })
+    return controls.stop
+  }, [inView, to])
+
+  return <span ref={ref}>{prefix}{display}{suffix}</span>
+}
 
 export function About() {
   return (
-    <section id="about" className="relative py-20 px-6 section-gradient-violet">
+    <section id="about" className="relative py-12 md:py-20 px-6 section-gradient-violet">
       <div className="max-w-5xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left: bio */}
           <div>
             <FadeIn direction="left">
@@ -45,10 +65,12 @@ export function About() {
 
           {/* Right: stats + highlight */}
           <Stagger delay={0.2} className="grid grid-cols-1 gap-4">
-            {stats.map(({ value, label }) => (
+            {stats.map(({ prefix, value, suffix, label }) => (
               <StaggerItem key={label}>
                 <div className="glass rounded-2xl px-8 py-6 flex items-center gap-6">
-                  <span className="text-4xl font-bold gradient-text">{value}</span>
+                  <span className="text-4xl font-bold gradient-text">
+                    <CountUp to={value} prefix={prefix} suffix={suffix} />
+                  </span>
                   <span className="text-sm leading-tight" style={{ color: 'var(--body)' }}>{label}</span>
                 </div>
               </StaggerItem>

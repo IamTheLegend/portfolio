@@ -13,7 +13,7 @@ export function Footer() {
     <footer className="border-t border-border py-10 px-6">
       <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs font-mono" style={{ color: 'var(--muted)' }}>
-          © {year} Prasanth Annam. Built with React + Tailwind.
+          © {year} Prasanth Annam.
         </p>
         <div className="flex items-center gap-4">
           {socials.map(({ icon: Icon, label, href }) => (
