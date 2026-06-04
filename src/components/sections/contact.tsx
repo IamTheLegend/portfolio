@@ -28,7 +28,7 @@ export function Contact() {
         />
 
         <FadeIn>
-          <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--dim)' }}>Contact</p>
+          <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--muted)' }}>Contact</p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] mb-6">
             Let's build something <GradientText>great</GradientText>
           </h2>

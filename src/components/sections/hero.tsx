@@ -92,7 +92,7 @@ export function Hero() {
           style={{ color: 'var(--body)' }}
         >
           From architecting AWS partner platforms powering billion-dollar programs to shipping
-          HR applications used by 300K+ people — I build software that performs at scale.
+          HR applications used by 1M+ people — I build software that performs at scale.
         </motion.p>
 
         {/* CTAs */}

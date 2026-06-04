@@ -4,7 +4,7 @@ import { GradientText } from '@/components/ui/gradient-text'
 
 const stats = [
   { value: '11+', label: 'Years of professional experience' },
-  { value: '300K+', label: 'Active users served' },
+  { value: '1M+', label: 'Active users served' },
   { value: '$12M+', label: 'In savings delivered' },
 ]
 
@@ -16,7 +16,7 @@ export function About() {
           {/* Left: bio */}
           <div>
             <FadeIn direction="left">
-              <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--dim)' }}>
+              <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--muted)' }}>
                 About me
               </p>
               <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] mb-6">
@@ -56,7 +56,7 @@ export function About() {
 
             <StaggerItem>
               <div className="glass rounded-2xl px-8 py-6">
-                <p className="text-xs font-mono uppercase tracking-[0.15em] mb-3" style={{ color: 'var(--dim)' }}>
+                <p className="text-xs font-mono uppercase tracking-[0.15em] mb-3" style={{ color: 'var(--muted)' }}>
                   Latest achievement
                 </p>
                 <p className="font-semibold text-sm" style={{ color: 'var(--fg)' }}>

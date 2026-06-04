@@ -10,7 +10,7 @@ export function Work() {
       <div className="max-w-5xl mx-auto">
         {/* Heading */}
         <FadeIn className="mb-16">
-          <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--dim)' }}>Experience</p>
+          <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--muted)' }}>Experience</p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1]">
             Where I've <GradientText>worked</GradientText>
           </h2>

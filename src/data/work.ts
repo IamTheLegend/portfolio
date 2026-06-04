@@ -20,10 +20,10 @@ export const workEntries: WorkEntry[] = [
     role: 'Senior Software Developer',
     period: 'Feb 2023 – Jul 2024',
     description:
-      'Designed and delivered web-based HR operating system services that streamlined workflows for 300K+ active employees, eliminating third-party dependencies.',
+      'Designed and delivered web-based HR operating system services that streamlined workflows for 1M+ active employees, eliminating third-party dependencies.',
     bullets: [
       'Led a 5-member team to architect HROS — web-based operating system services for employee and HR workflows',
-      'Architected full-stack applications for employee training, recognition, and profiles used by 300K+ active users, saving $750K annually by removing third-party tool dependencies',
+      'Architected full-stack applications for employee training, recognition, and profiles used by 1M+ active users, saving $750K annually by removing third-party tool dependencies',
       'Planned and executed optimisation of 3,000+ APIs across 5 applications, improving performance by ~30% in turn-around time',
     ],
     tags: ['React', 'Node.js', 'TypeScript', 'REST APIs', 'Performance', 'Full-Stack'],

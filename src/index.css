@@ -241,6 +241,7 @@ a {
   animation: glow-pulse 3s ease-in-out infinite;
 }
 
+
 /* ── Scrollbar ─────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }

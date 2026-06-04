@@ -12,7 +12,7 @@ export function Skills() {
       <div className="max-w-5xl mx-auto">
         {/* Heading */}
         <FadeIn className="mb-16 text-center">
-          <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--dim)' }}>Skills</p>
+          <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--muted)' }}>Skills</p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1]">
             Built to be <GradientText>AI-first</GradientText>
           </h2>
@@ -51,8 +51,8 @@ export function Skills() {
                     key={skill}
                     className="inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 cursor-default"
                     style={{
-                      background: 'linear-gradient(135deg, oklch(72% 0.19 270 / 0.15), oklch(72% 0.18 200 / 0.12), oklch(72% 0.20 330 / 0.15))',
-                      border: '1px solid oklch(72% 0.19 270 / 0.30)',
+                      background: 'linear-gradient(135deg, oklch(72% 0.19 270 / 0.10), oklch(72% 0.18 200 / 0.08), oklch(72% 0.20 330 / 0.10))',
+                      border: '1px solid oklch(72% 0.19 270 / 0.22)',
                       color: 'var(--fg)',
                     }}
                   >
@@ -79,10 +79,10 @@ export function Skills() {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="inline-flex items-center rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 cursor-default"
+                      className="skill-pill inline-flex items-center rounded-full px-4 py-2 text-sm font-medium cursor-default"
                       style={{
-                        background: 'var(--surface)',
-                        border: '1px solid var(--border)',
+                        background: 'linear-gradient(135deg, oklch(72% 0.19 270 / 0.10), oklch(72% 0.18 200 / 0.08), oklch(72% 0.20 330 / 0.10))',
+                        border: '1px solid oklch(72% 0.19 270 / 0.22)',
                         color: 'var(--fg)',
                       }}
                     >
