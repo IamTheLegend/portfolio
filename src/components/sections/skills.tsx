@@ -9,10 +9,10 @@ export function Skills() {
   const rest = skillCategories.filter((c) => !c.featured)
 
   return (
-    <section id="skills" className="relative py-12 md:py-20 px-6 section-gradient-pink">
-      <div className="max-w-5xl mx-auto">
+    <section id="skills" className="relative min-h-dvh flex flex-col justify-center py-8 md:py-12 px-6 section-gradient-pink">
+      <div className="max-w-5xl mx-auto w-full">
         {/* Heading */}
-        <FadeIn className="mb-10 md:mb-16 text-center">
+        <FadeIn className="mb-8 md:mb-12 text-center">
           <p className="text-xs font-mono uppercase tracking-[0.2em] mb-4" style={{ color: 'var(--muted)' }}>Skills</p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1]">
             Built to be <GradientText>AI-first</GradientText>

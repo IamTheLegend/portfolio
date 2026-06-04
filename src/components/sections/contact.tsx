@@ -17,8 +17,8 @@ const socials = [
 
 export function Contact() {
   return (
-    <section id="contact" className="py-12 md:py-20 px-6">
-      <div className="max-w-3xl mx-auto text-center">
+    <section id="contact" className="relative min-h-dvh flex flex-col justify-center py-8 md:py-12 px-6">
+      <div className="max-w-3xl mx-auto w-full text-center">
         {/* Decorative orb */}
         <div
           className="absolute left-1/2 -translate-x-1/2 w-[500px] h-48 -mt-24 pointer-events-none blur-3xl opacity-10 rounded-full"

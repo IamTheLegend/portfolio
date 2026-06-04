@@ -4,6 +4,7 @@ import { Sun, Moon, Menu, X } from 'lucide-react'
 import { useTheme } from '@/lib/theme'
 import { useScrollProgress } from '@/hooks/use-scroll-progress'
 import { cn } from '@/lib/cn'
+import { scrollTo } from '@/App'
 
 const navLinks = [
   { label: 'About', href: '#about' },
@@ -29,8 +30,7 @@ export function Nav() {
 
   function handleNavClick(href: string) {
     setMobileOpen(false)
-    const el = document.querySelector(href)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    scrollTo(href)
   }
 
   return (

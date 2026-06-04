@@ -1,7 +1,8 @@
 import { motion, useScroll, useTransform } from 'motion/react'
-import { ArrowDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { LinkedinIcon } from '@/components/ui/brand-icons'
+import { scrollTo } from '@/App'
+import { SectionScroll } from '@/components/ui/section-scroll'
 
 const ease = [0.25, 0.4, 0.25, 1] as const
 
@@ -18,12 +19,8 @@ export function Hero() {
   const orb1Y = useTransform(scrollY, [0, 600], [0, -80])
   const orb2Y = useTransform(scrollY, [0, 600], [0, 50])
 
-  function scrollToWork() {
-    document.querySelector('#work')?.scrollIntoView({ behavior: 'smooth' })
-  }
-  function scrollToContact() {
-    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
-  }
+  function scrollToAbout() { scrollTo('#about') }
+  function scrollToContact() { scrollTo('#contact') }
 
   return (
     <section className="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden px-6">
@@ -75,7 +72,7 @@ export function Hero() {
           {...reveal(0.38)}
           className="flex flex-col sm:flex-row items-center justify-center gap-3"
         >
-          <Button onClick={scrollToWork}>View my work</Button>
+          <Button onClick={scrollToAbout}>View my work</Button>
           <Button variant="outline" onClick={scrollToContact}>
             Get in touch
           </Button>
@@ -94,17 +91,7 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.button
-        {...reveal(0.55)}
-        onClick={scrollToWork}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 transition-colors cursor-pointer"
-        style={{ color: 'var(--muted)' }}
-        aria-label="Scroll down"
-      >
-        <span className="text-xs font-mono tracking-widest uppercase">Scroll</span>
-        <ArrowDown size={14} className="animate-bounce" />
-      </motion.button>
+      <SectionScroll target="#about" label="About" />
     </section>
   )
 }

@@ -1,13 +1,24 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 import { Nav } from '@/components/layout/nav'
-import { Footer } from '@/components/layout/footer'
 import { Hero } from '@/components/sections/hero'
 import { About } from '@/components/sections/about'
 import { Work } from '@/components/sections/work'
 import { Skills } from '@/components/sections/skills'
 import { Contact } from '@/components/sections/contact'
 import { Marquee } from '@/components/ui/marquee'
+
+let lenisInstance: Lenis | null = null
+
+export function scrollTo(target: string) {
+  const el = document.querySelector(target)
+  if (!el) return
+  if (lenisInstance) {
+    lenisInstance.scrollTo(el as HTMLElement, { offset: 0, duration: 1.2 })
+  } else {
+    el.scrollIntoView({ behavior: 'smooth' })
+  }
+}
 
 function App() {
   useEffect(() => {
@@ -16,6 +27,7 @@ function App() {
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
+    lenisInstance = lenis
 
     let rafId: number
     function raf(time: number) {
@@ -27,6 +39,7 @@ function App() {
     return () => {
       cancelAnimationFrame(rafId)
       lenis.destroy()
+      lenisInstance = null
     }
   }, [])
 
@@ -41,7 +54,6 @@ function App() {
         <Skills />
         <Contact />
       </main>
-      <Footer />
     </div>
   )
 }

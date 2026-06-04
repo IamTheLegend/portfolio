@@ -3,6 +3,7 @@ import { useInView, animate } from 'motion/react'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Stagger, StaggerItem } from '@/components/motion/stagger'
 import { GradientText } from '@/components/ui/gradient-text'
+import { SectionScroll } from '@/components/ui/section-scroll'
 
 const stats = [
   { prefix: '', value: 11, suffix: '+', label: 'Years of professional experience' },
@@ -30,8 +31,8 @@ function CountUp({ to, prefix = '', suffix = '' }: { to: number; prefix?: string
 
 export function About() {
   return (
-    <section id="about" className="relative py-12 md:py-20 px-6 section-gradient-violet">
-      <div className="max-w-5xl mx-auto">
+    <section id="about" className="relative min-h-dvh flex flex-col justify-center py-8 md:py-12 px-6 section-gradient-violet">
+      <div className="max-w-5xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Left: bio */}
           <div>
@@ -92,6 +93,7 @@ export function About() {
           </Stagger>
         </div>
       </div>
+      <SectionScroll target="#work" label="Experience" />
     </section>
   )
 }
