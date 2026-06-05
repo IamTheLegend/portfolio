@@ -112,7 +112,8 @@ export function Nav() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.97 }}
               transition={{ duration: 0.2, ease: [0.25, 0.4, 0.25, 1] }}
-              className="mt-2 glass rounded-2xl p-3 flex flex-col gap-1"
+              className="mt-2 rounded-2xl p-3 flex flex-col gap-1 border border-border"
+              style={{ background: 'var(--surface)' }}
             >
               {navLinks.map((link) => (
                 <button

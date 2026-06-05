@@ -37,7 +37,7 @@ export function Hero() {
 
       <div className="absolute inset-0 hero-text-shield pointer-events-none" />
 
-      <div className="relative z-10 text-center max-w-4xl mx-auto">
+      <div className="relative z-10 text-center max-w-4xl mx-auto pt-16 md:pt-0">
         {/* Badge */}
         <motion.div {...reveal(0)}
           className="inline-flex items-center gap-2 glass border border-border rounded-full px-4 py-1.5 text-xs font-mono mb-8"
