@@ -88,7 +88,7 @@ export function Hero() {
           <motion.span {...reveal(0.08)} className="block" style={{ color: 'var(--fg)' }}>
             Hi, I'm Prasanth
           </motion.span>
-          <motion.span {...reveal(0.18)} className="block mt-2 gradient-text-hero">
+          <motion.span {...reveal(0.18)} className="block mt-2 gradient-text-hero leading-[1.18] pb-[0.12em]">
             Senior Full-Stack Engineer
           </motion.span>
         </h1>
