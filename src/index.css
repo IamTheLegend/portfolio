@@ -3,36 +3,56 @@
 @import "@fontsource-variable/geist-mono";
 @import "tailwindcss";
 
-/* ── Semantic color tokens ─────────────────────────────────────────── */
+/* ─────────────────────────────────────────────────────────────────────
+   DEEP-SPACE NEBULA palette — cyan → violet → magenta on indigo-black.
+   Three gradient stops drive every accent surface in the app so the
+   whole theme can be retuned from these variables alone.
+   ───────────────────────────────────────────────────────────────────── */
 :root {
-  --bg: oklch(5% 0.04 265);
-  --fg: oklch(95% 0 0);
-  --body: oklch(76% 0 0);
-  --muted: oklch(62% 0 0);
-  --dim: oklch(44% 0 0);
-  --accent: oklch(72% 0.19 270);
-  --accent2: oklch(72% 0.18 200);
-  --accent3: oklch(72% 0.20 330);
+  /* gradient stops */
+  --g1: oklch(82% 0.13 220);  /* cyan    */
+  --g2: oklch(64% 0.21 295);  /* violet  */
+  --g3: oklch(70% 0.25 350);  /* magenta */
+
+  /* semantic */
+  --bg: oklch(8% 0.035 280);
+  --fg: oklch(96% 0.01 250);
+  --body: oklch(78% 0.02 255);
+  --muted: oklch(62% 0.025 260);
+  --dim: oklch(45% 0.02 265);
+  --accent: var(--g2);
+  --accent2: var(--g1);
+  --accent3: var(--g3);
   --border: oklch(100% 0 0 / 0.12);
-  --card: oklch(9% 0.04 265 / 0.65);
-  --surface: oklch(14% 0.04 265);
+  --card: oklch(13% 0.03 280 / 0.55);
+  --surface: oklch(16% 0.035 280);
+
+  /* WebGL backdrop tuning */
+  --ribbon-opacity: 1;
 }
 
 [data-theme="light"] {
-  --bg: oklch(97% 0.01 265);
-  --fg: oklch(10% 0 0);
-  --body: oklch(24% 0 0);
-  --muted: oklch(40% 0 0);
-  --dim: oklch(58% 0 0);
-  --accent: oklch(52% 0.19 270);
-  --accent2: oklch(52% 0.18 200);
-  --accent3: oklch(52% 0.20 330);
-  --border: oklch(0% 0 0 / 0.09);
-  --card: oklch(94% 0.02 265 / 0.7);
-  --surface: oklch(88% 0.02 265);
+  --g1: oklch(54% 0.15 235);  /* deeper cyan   */
+  --g2: oklch(47% 0.23 295);  /* deeper violet */
+  --g3: oklch(51% 0.26 350);  /* deeper magenta*/
+
+  /* twilight light — a cool lavender-grey, NOT stark white */
+  --bg: oklch(85% 0.03 272);
+  --fg: oklch(20% 0.05 278);
+  --body: oklch(33% 0.045 274);
+  --muted: oklch(47% 0.038 272);
+  --dim: oklch(60% 0.03 270);
+  --accent: var(--g2);
+  --accent2: var(--g1);
+  --accent3: var(--g3);
+  --border: oklch(26% 0.06 285 / 0.16);
+  --card: oklch(92% 0.025 275 / 0.45);
+  --surface: oklch(79% 0.04 272);
+
+  --ribbon-opacity: 0.7;
 }
 
-/* ── Tailwind theme ────────────────────────────────────────────────── */
+/* ── Tailwind theme bindings ────────────────────────────────────────── */
 @theme inline {
   --color-bg: var(--bg);
   --color-fg: var(--fg);
@@ -51,19 +71,14 @@
 }
 
 /* ── Base reset ────────────────────────────────────────────────────── */
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
   color-scheme: dark;
   scroll-behavior: auto;
   overflow-x: hidden;
 }
-
-html[data-theme="light"] {
-  color-scheme: light;
-}
+html[data-theme="light"] { color-scheme: light; }
 
 body {
   margin: 0;
@@ -78,141 +93,143 @@ body {
   min-height: 100dvh;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+a { text-decoration: none; color: inherit; }
+
+/* The fixed WebGL canvas lives behind everything */
+.backdrop-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* CSS fallback shown before the ribbon mounts (and if WebGL is absent) */
+.backdrop-fallback {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(ellipse 90% 70% at 12% 12%, oklch(from var(--g1) l c h / 0.14) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 70% at 88% 30%, oklch(from var(--g2) l c h / 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 90% 80% at 60% 100%, oklch(from var(--g3) l c h / 0.12) 0%, transparent 55%);
+}
+[data-theme="light"] .backdrop-fallback {
+  background-image:
+    radial-gradient(ellipse 90% 70% at 12% 12%, oklch(from var(--g1) l c h / 0.12) 0%, transparent 52%),
+    radial-gradient(ellipse 80% 70% at 88% 30%, oklch(from var(--g2) l c h / 0.10) 0%, transparent 52%),
+    radial-gradient(ellipse 90% 80% at 60% 100%, oklch(from var(--g3) l c h / 0.10) 0%, transparent 55%);
 }
 
 /* ── Glassmorphism ─────────────────────────────────────────────────── */
 .glass {
   background: var(--card);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
   border: 1px solid var(--border);
 }
 
-/* ── Gradient border card ──────────────────────────────────────────── */
 .glass-gradient-border {
   position: relative;
   isolation: isolate;
   background: var(--card);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px) saturate(1.4);
+  -webkit-backdrop-filter: blur(24px) saturate(1.4);
   border-radius: 20px;
   border: 1px solid transparent;
 }
-
 .glass-gradient-border::before {
   content: '';
   position: absolute;
   inset: -1.5px;
   border-radius: 21.5px;
-  background: linear-gradient(135deg, var(--accent), var(--accent2), var(--accent3));
+  background: linear-gradient(135deg, var(--g1), var(--g2), var(--g3));
   z-index: -1;
   opacity: 0.9;
 }
-
-[data-theme="light"] .glass-gradient-border::before {
-  opacity: 0.6;
-}
+[data-theme="light"] .glass-gradient-border::before { opacity: 0.6; }
 
 /* ── Gradient text ─────────────────────────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
+  background: linear-gradient(110deg, var(--g1) 0%, var(--g2) 48%, var(--g3) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Hero-specific gradient text: near-white tints in dark mode so it
-   stays readable on top of any vivid gradient background */
 .gradient-text-hero {
   background: linear-gradient(
-    135deg,
-    oklch(94% 0.10 270) 0%,
-    oklch(94% 0.08 200) 50%,
-    oklch(94% 0.10 330) 100%
+    110deg,
+    oklch(92% 0.09 220) 0%,
+    oklch(88% 0.12 295) 48%,
+    oklch(88% 0.13 350) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
 [data-theme="light"] .gradient-text-hero {
   background: linear-gradient(
-    135deg,
-    oklch(38% 0.22 270) 0%,
-    oklch(38% 0.20 200) 50%,
-    oklch(38% 0.22 330) 100%
+    110deg,
+    oklch(52% 0.14 230) 0%,
+    oklch(46% 0.21 295) 48%,
+    oklch(48% 0.24 350) 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-/* Dark radial vignette at center — creates a text-readable zone
-   without cutting the edge gradients */
-.hero-text-shield {
-  background: radial-gradient(
-    ellipse 65% 55% at 50% 52%,
-    oklch(2% 0 0 / 0.55) 0%,
-    transparent 70%
-  );
-}
-
-[data-theme="light"] .hero-text-shield {
-  background: radial-gradient(
-    ellipse 65% 55% at 50% 52%,
-    oklch(98% 0 0 / 0.45) 0%,
-    transparent 70%
-  );
 }
 
 .gradient-text-animate {
-  background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
+  background: linear-gradient(90deg, var(--g1), var(--g2), var(--g3), var(--g1));
   background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradient-shift 4s linear infinite;
+  animation: gradient-shift 5s linear infinite;
 }
 
-/* ── Hero mesh gradient — bold, iPhone-style full-bleed ────────────── */
-.mesh-bg {
-  background-image:
-    radial-gradient(ellipse 110% 85% at 20% 35%, oklch(72% 0.19 270 / 0.60) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 80% at 82% 65%, oklch(72% 0.20 330 / 0.52) 0%, transparent 55%),
-    radial-gradient(ellipse 80% 70% at 55% 5%,  oklch(72% 0.18 200 / 0.42) 0%, transparent 52%);
+/* Reusable sunset fill for pills / accent surfaces */
+.sunset-fill {
+  background: linear-gradient(
+    135deg,
+    oklch(from var(--g1) l c h / 0.14),
+    oklch(from var(--g2) l c h / 0.10),
+    oklch(from var(--g3) l c h / 0.14)
+  );
+  border: 1px solid oklch(from var(--g2) l c h / 0.24);
+  color: var(--fg);
+}
+.sunset-line {
+  background: linear-gradient(to bottom, var(--g1), var(--g2), var(--g3));
 }
 
-[data-theme="light"] .mesh-bg {
-  background-image:
-    radial-gradient(ellipse 110% 85% at 20% 35%, oklch(72% 0.19 270 / 0.22) 0%, transparent 55%),
-    radial-gradient(ellipse 90% 80% at 82% 65%, oklch(72% 0.20 330 / 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse 80% 70% at 55% 5%,  oklch(72% 0.18 200 / 0.14) 0%, transparent 52%);
+/* Text readability vignette over the ribbon */
+.hero-text-shield {
+  background: radial-gradient(ellipse 60% 48% at 46% 50%, oklch(4% 0.02 280 / 0.28) 0%, transparent 72%);
+}
+[data-theme="light"] .hero-text-shield {
+  background: radial-gradient(ellipse 62% 50% at 46% 50%, oklch(85% 0.03 272 / 0.55) 0%, transparent 72%);
 }
 
-/* ── Section accent gradients ──────────────────────────────────────── */
+/* ── Per-section accent washes (subtle, sit above the ribbon) ───────── */
+.section-gradient-amber {
+  background-image: radial-gradient(ellipse 80% 60% at 8% 50%, oklch(from var(--g1) l c h / 0.16) 0%, transparent 60%);
+}
+.section-gradient-coral {
+  background-image: radial-gradient(ellipse 72% 60% at 92% 40%, oklch(from var(--g2) l c h / 0.16) 0%, transparent 60%);
+}
 .section-gradient-violet {
-  background-image: radial-gradient(ellipse 80% 60% at 10% 50%, oklch(72% 0.19 270 / 0.22) 0%, transparent 60%);
+  background-image: radial-gradient(ellipse 75% 55% at 50% 60%, oklch(from var(--g3) l c h / 0.15) 0%, transparent 58%);
 }
-
-.section-gradient-cyan {
-  background-image: radial-gradient(ellipse 70% 60% at 90% 40%, oklch(72% 0.18 200 / 0.20) 0%, transparent 60%);
+[data-theme="light"] .section-gradient-amber {
+  background-image: radial-gradient(ellipse 80% 60% at 8% 50%, oklch(from var(--g1) l c h / 0.10) 0%, transparent 60%);
 }
-
-.section-gradient-pink {
-  background-image: radial-gradient(ellipse 75% 55% at 50% 60%, oklch(72% 0.20 330 / 0.19) 0%, transparent 58%);
+[data-theme="light"] .section-gradient-coral {
+  background-image: radial-gradient(ellipse 72% 60% at 92% 40%, oklch(from var(--g2) l c h / 0.09) 0%, transparent 60%);
 }
-
 [data-theme="light"] .section-gradient-violet {
-  background-image: radial-gradient(ellipse 80% 60% at 10% 50%, oklch(72% 0.19 270 / 0.10) 0%, transparent 60%);
-}
-[data-theme="light"] .section-gradient-cyan {
-  background-image: radial-gradient(ellipse 70% 60% at 90% 40%, oklch(72% 0.18 200 / 0.09) 0%, transparent 60%);
-}
-[data-theme="light"] .section-gradient-pink {
-  background-image: radial-gradient(ellipse 75% 55% at 50% 60%, oklch(72% 0.20 330 / 0.09) 0%, transparent 58%);
+  background-image: radial-gradient(ellipse 75% 55% at 50% 60%, oklch(from var(--g3) l c h / 0.09) 0%, transparent 58%);
 }
 
 /* ── Animations ────────────────────────────────────────────────────── */
@@ -220,52 +237,43 @@ a {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
-
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-.animate-marquee:hover {
-  animation-play-state: paused;
-}
+.animate-marquee { animation: marquee 32s linear infinite; }
+.animate-marquee:hover { animation-play-state: paused; }
 
 @keyframes gradient-shift {
   0% { background-position: 0% center; }
   100% { background-position: 300% center; }
 }
-
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
-
 @keyframes glow-pulse {
   0%, 100% { opacity: 0.7; }
   50% { opacity: 1; }
 }
-
-@keyframes border-glow {
-  0%, 100% { opacity: 0.7; }
-  50% { opacity: 1; }
-}
-
-.animate-float {
-  animation: float 5s ease-in-out infinite;
-}
-
-.animate-glow {
-  animation: glow-pulse 3s ease-in-out infinite;
-}
-
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-glow { animation: glow-pulse 4s ease-in-out infinite; }
 
 /* ── Scrollbar ─────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--g1), var(--g3));
+  border-radius: 3px;
+}
 
 /* ── Selection ─────────────────────────────────────────────────────── */
 ::selection {
-  background: oklch(72% 0.19 270 / 0.3);
+  background: oklch(from var(--g2) l c h / 0.3);
   color: var(--fg);
+}
+
+/* ── Respect reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }

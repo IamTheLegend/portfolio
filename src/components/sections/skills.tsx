@@ -9,7 +9,7 @@ export function Skills() {
   const rest = skillCategories.filter((c) => !c.featured)
 
   return (
-    <section id="skills" className="relative min-h-dvh flex flex-col justify-center py-8 md:py-12 px-6 section-gradient-pink">
+    <section id="skills" className="relative min-h-dvh flex flex-col justify-center py-8 md:py-12 px-6 section-gradient-amber">
       <div className="max-w-5xl mx-auto w-full">
         {/* Heading */}
         <FadeIn className="mb-8 md:mb-12 text-center">
@@ -41,7 +41,7 @@ export function Skills() {
                 </div>
                 <span
                   className="self-start text-xs font-mono px-3 py-1.5 rounded-full border whitespace-nowrap"
-                  style={{ borderColor: 'var(--accent)', color: 'var(--fg)', background: 'oklch(72% 0.19 270 / 0.15)' }}
+                  style={{ borderColor: 'var(--accent)', color: 'var(--fg)', background: 'oklch(from var(--accent) l c h / 0.16)' }}
                 >
                   Primary expertise
                 </span>
@@ -50,12 +50,7 @@ export function Skills() {
                 {featured.skills.map((skill) => (
                   <span
                     key={skill}
-                    className="inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 cursor-default"
-                    style={{
-                      background: 'linear-gradient(135deg, oklch(72% 0.19 270 / 0.10), oklch(72% 0.18 200 / 0.08), oklch(72% 0.20 330 / 0.10))',
-                      border: '1px solid oklch(72% 0.19 270 / 0.22)',
-                      color: 'var(--fg)',
-                    }}
+                    className="sunset-fill inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 cursor-default hover:-translate-y-px"
                   >
                     {skill}
                   </span>
@@ -81,12 +76,7 @@ export function Skills() {
                   {category.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="skill-pill inline-flex items-center rounded-full px-4 py-2 text-sm font-medium cursor-default"
-                      style={{
-                        background: 'linear-gradient(135deg, oklch(72% 0.19 270 / 0.10), oklch(72% 0.18 200 / 0.08), oklch(72% 0.20 330 / 0.10))',
-                        border: '1px solid oklch(72% 0.19 270 / 0.22)',
-                        color: 'var(--fg)',
-                      }}
+                      className="sunset-fill inline-flex items-center rounded-full px-4 py-2 text-sm font-medium cursor-default transition-all duration-200 hover:-translate-y-px"
                     >
                       {skill}
                     </span>

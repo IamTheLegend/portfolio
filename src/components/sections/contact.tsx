@@ -4,7 +4,7 @@ import { GradientText } from '@/components/ui/gradient-text'
 import { Mail } from 'lucide-react'
 import { LinkedinIcon } from '@/components/ui/brand-icons'
 
-const email = 'hireprasanthannam@gmail.com'
+const email = 'annam.prasanth.official@gmail.com'
 
 const socials = [
   {
@@ -18,7 +18,7 @@ const socials = [
 export function Contact() {
   return (
     <section id="contact" className="relative min-h-dvh flex flex-col justify-center py-8 md:py-12 px-6">
-      <div className="max-w-3xl mx-auto w-full text-center">
+      <div className="max-w-3xl mx-auto w-full text-center -translate-y-6 md:-translate-y-12">
         {/* Decorative orb */}
         <div
           className="absolute left-1/2 -translate-x-1/2 w-[500px] h-48 -mt-24 pointer-events-none blur-3xl opacity-10 rounded-full"

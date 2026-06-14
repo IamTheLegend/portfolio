@@ -1,4 +1,5 @@
-import { motion, useScroll, useTransform } from 'motion/react'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'motion/react'
 import { Button } from '@/components/ui/button'
 import { LinkedinIcon } from '@/components/ui/brand-icons'
 import { scrollTo } from '@/App'
@@ -8,9 +9,9 @@ const ease = [0.25, 0.4, 0.25, 1] as const
 
 function reveal(delay: number) {
   return {
-    initial: { opacity: 0, filter: 'blur(10px)' },
-    animate: { opacity: 1, filter: 'blur(0px)' },
-    transition: { duration: 0.55, delay, ease },
+    initial: { opacity: 0, filter: 'blur(10px)', y: 14 },
+    animate: { opacity: 1, filter: 'blur(0px)', y: 0 },
+    transition: { duration: 0.6, delay, ease },
   }
 }
 
@@ -19,27 +20,62 @@ export function Hero() {
   const orb1Y = useTransform(scrollY, [0, 600], [0, -80])
   const orb2Y = useTransform(scrollY, [0, 600], [0, 50])
 
-  function scrollToAbout() { scrollTo('#about') }
-  function scrollToContact() { scrollTo('#contact') }
+  // Pointer-driven 3D tilt on the headline block
+  const rotX = useSpring(useMotionValue(0), { stiffness: 120, damping: 18 })
+  const rotY = useSpring(useMotionValue(0), { stiffness: 120, damping: 18 })
+  const cardRef = useRef<HTMLDivElement>(null)
+
+  function onMove(e: React.MouseEvent) {
+    const el = cardRef.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    const px = (e.clientX - r.left) / r.width - 0.5
+    const py = (e.clientY - r.top) / r.height - 0.5
+    rotY.set(px * 8)
+    rotX.set(-py * 6)
+  }
+  function onLeave() {
+    rotX.set(0)
+    rotY.set(0)
+  }
+
+  function scrollToAbout() {
+    scrollTo('#about')
+  }
+  function scrollToContact() {
+    scrollTo('#contact')
+  }
 
   return (
-    <section className="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden px-6">
-      <div className="absolute inset-0 mesh-bg pointer-events-none" />
-
+    <section
+      className="relative min-h-dvh flex flex-col items-center justify-center overflow-hidden px-6"
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+    >
+      {/* soft depth orbs (sit above the ribbon, below the text) */}
       <motion.div
-        style={{ y: orb1Y, background: 'var(--accent)' }}
-        className="absolute -top-48 -left-48 w-[700px] h-[700px] rounded-full pointer-events-none blur-3xl opacity-40 animate-glow"
+        style={{ y: orb1Y, background: 'var(--accent2)' }}
+        className="absolute -top-48 -left-48 w-[620px] h-[620px] rounded-full pointer-events-none blur-3xl opacity-20 animate-glow"
       />
       <motion.div
         style={{ y: orb2Y, background: 'var(--accent3)' }}
-        className="absolute -bottom-48 -right-48 w-[700px] h-[700px] rounded-full pointer-events-none blur-3xl opacity-35 animate-glow"
+        className="absolute -bottom-48 -right-48 w-[620px] h-[620px] rounded-full pointer-events-none blur-3xl opacity-20 animate-glow"
       />
 
       <div className="absolute inset-0 hero-text-shield pointer-events-none" />
 
-      <div className="relative z-10 text-center max-w-4xl mx-auto pt-16 md:pt-0">
+      <motion.div
+        ref={cardRef}
+        style={{
+          rotateX: rotX,
+          rotateY: rotY,
+          transformPerspective: 1000,
+        }}
+        className="relative z-10 text-center max-w-4xl mx-auto"
+      >
         {/* Badge */}
-        <motion.div {...reveal(0)}
+        <motion.div
+          {...reveal(0)}
           className="inline-flex items-center gap-2 glass border border-border rounded-full px-4 py-1.5 text-xs font-mono mb-8"
           style={{ color: 'var(--body)' }}
         >
@@ -48,7 +84,7 @@ export function Hero() {
         </motion.div>
 
         {/* Heading */}
-        <h1 className="text-[3.5rem] sm:text-[4.25rem] md:text-[5.7rem] font-bold tracking-tight leading-[1.2] mb-6">
+        <h1 className="text-[3.5rem] sm:text-[4.25rem] md:text-[5.7rem] font-bold tracking-tight leading-[1.08] mb-6">
           <motion.span {...reveal(0.08)} className="block" style={{ color: 'var(--fg)' }}>
             Hi, I'm Prasanth
           </motion.span>
@@ -82,14 +118,14 @@ export function Hero() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="p-2.5 rounded-full transition-all duration-200"
+              className="p-2.5 rounded-full transition-all duration-200 hover:text-fg"
               style={{ color: 'var(--muted)' }}
             >
               <LinkedinIcon size={18} />
             </a>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
 
       <SectionScroll target="#about" label="About" />
     </section>

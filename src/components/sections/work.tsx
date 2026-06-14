@@ -16,7 +16,7 @@ function TiltCard({ children, className }: { children: React.ReactNode; classNam
     const x = (e.clientX - rect.left) / rect.width - 0.5
     const y = (e.clientY - rect.top) / rect.height - 0.5
     el.style.transform = `perspective(900px) rotateY(${x * 6}deg) rotateX(${-y * 4}deg) translateY(-4px)`
-    el.style.boxShadow = '0 16px 48px oklch(72% 0.19 270 / 0.18), 0 0 0 1px oklch(72% 0.19 270 / 0.22)'
+    el.style.boxShadow = '0 16px 48px oklch(64% 0.21 295 / 0.22), 0 0 0 1px oklch(64% 0.21 295 / 0.30)'
   }
 
   function onLeave() {
@@ -41,7 +41,7 @@ function TiltCard({ children, className }: { children: React.ReactNode; classNam
 
 export function Work() {
   return (
-    <section id="work" className="relative min-h-dvh flex flex-col justify-center py-8 md:py-12 px-6 section-gradient-cyan">
+    <section id="work" className="relative min-h-dvh flex flex-col justify-center py-8 md:py-12 px-6 section-gradient-coral">
       <div className="max-w-5xl mx-auto w-full">
         {/* Heading */}
         <FadeIn className="mb-8 md:mb-12">

@@ -1,5 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
-import { useInView, animate } from 'motion/react'
+import { motion, useInView, animate } from 'motion/react'
 import { FadeIn } from '@/components/motion/fade-in'
 import { Stagger, StaggerItem } from '@/components/motion/stagger'
 import { GradientText } from '@/components/ui/gradient-text'
@@ -19,14 +19,27 @@ function CountUp({ to, prefix = '', suffix = '' }: { to: number; prefix?: string
   useEffect(() => {
     if (!inView) return
     const controls = animate(0, to, {
-      duration: 1.5,
-      ease: [0.25, 0.4, 0.25, 1],
+      duration: 2,
+      ease: [0.16, 1, 0.3, 1],
       onUpdate: (v) => setDisplay(Math.round(v)),
     })
     return controls.stop
   }, [inView, to])
 
-  return <span ref={ref}>{prefix}{display}{suffix}</span>
+  return (
+    <motion.span
+      ref={ref}
+      className="gradient-text"
+      initial={{ opacity: 0, y: 16, filter: 'blur(8px)' }}
+      animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
+      transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] }}
+      style={{ display: 'inline-block' }}
+    >
+      {prefix}
+      {display}
+      {suffix}
+    </motion.span>
+  )
 }
 
 export function About() {
@@ -41,8 +54,7 @@ export function About() {
                 About me
               </p>
               <h2 className="text-4xl sm:text-5xl font-bold tracking-tight leading-[1.1] mb-6">
-                From APIs to interfaces,{' '}
-                <GradientText>built to scale</GradientText>
+                From APIs to interfaces, <GradientText>built to scale</GradientText>
               </h2>
               <div className="space-y-4 leading-relaxed" style={{ color: 'var(--body)' }}>
                 <p>
@@ -69,7 +81,7 @@ export function About() {
             {stats.map(({ prefix, value, suffix, label }) => (
               <StaggerItem key={label}>
                 <div className="glass rounded-2xl px-8 py-6 flex items-center gap-6">
-                  <span className="text-4xl font-bold gradient-text">
+                  <span className="text-4xl font-bold">
                     <CountUp to={value} prefix={prefix} suffix={suffix} />
                   </span>
                   <span className="text-sm leading-tight" style={{ color: 'var(--body)' }}>{label}</span>

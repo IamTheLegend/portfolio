@@ -5,7 +5,7 @@ const year = new Date().getFullYear()
 
 const socials = [
   { icon: LinkedinIcon, label: 'LinkedIn', href: 'https://www.linkedin.com/in/prasanth-annam/' },
-  { icon: Mail, label: 'Email', href: 'mailto:hireprasanthannam@gmail.com' },
+  { icon: Mail, label: 'Email', href: 'mailto:annam.prasanth.official@gmail.com' },
 ]
 
 export function Footer() {

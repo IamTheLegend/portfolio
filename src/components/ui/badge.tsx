@@ -9,17 +9,11 @@ interface BadgeProps {
 export function Badge({ children, className, variant = 'default' }: BadgeProps) {
   return (
     <span
-      style={{
-        color: 'var(--body)',
-        ...(variant === 'default' && {
-          background: 'linear-gradient(135deg, oklch(72% 0.19 270 / 0.12), oklch(72% 0.18 200 / 0.09), oklch(72% 0.20 330 / 0.12))',
-          border: '1px solid oklch(72% 0.19 270 / 0.25)',
-        }),
-      }}
+      style={{ color: 'var(--body)' }}
       className={cn(
         'inline-flex items-center rounded-full px-3 py-1 text-xs font-medium tracking-wide',
-        'transition-all duration-200 hover:-translate-y-px hover:border-accent/50 hover:text-fg hover:shadow-[0_0_8px_oklch(72%_0.19_270/0.2)]',
-        variant === 'default' && 'border',
+        'transition-all duration-200 hover:-translate-y-px hover:border-accent/50 hover:text-fg hover:shadow-[0_0_10px_oklch(from_var(--accent)_l_c_h/0.25)]',
+        variant === 'default' && 'sunset-fill',
         variant === 'accent' && 'bg-accent/10 text-accent border border-accent/20',
         variant === 'outline' && 'border border-border',
         className

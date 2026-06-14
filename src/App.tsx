@@ -7,6 +7,7 @@ import { Work } from '@/components/sections/work'
 import { Skills } from '@/components/sections/skills'
 import { Contact } from '@/components/sections/contact'
 import { Marquee } from '@/components/ui/marquee'
+import { Backdrop } from '@/components/three/backdrop'
 
 let lenisInstance: Lenis | null = null
 
@@ -45,8 +46,9 @@ function App() {
 
   return (
     <div className="relative">
+      <Backdrop />
       <Nav />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <Marquee />
         <About />
