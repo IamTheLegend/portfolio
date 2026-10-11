@@ -22,7 +22,7 @@ export function Skills() {
             {"Tools I work with."}
           </h2>
           <p className="lead">
-            {"These are the languages, frameworks, and tools I use to build products and solve engineering problems."}
+            {"The languages, frameworks and platforms I've used to ship real products, from the front end to the cloud and AI."}
           </p>
         </div>
         <div className="skill-grid">
@@ -210,7 +210,7 @@ export function Skills() {
                 {"Backend & Frameworks"}
               </h3>
               <span className="skill-count">
-                {"08"}
+                {"09"}
               </span>
             </div>
             <div className="tech-list">
@@ -289,6 +289,17 @@ export function Skills() {
                 </span>
                 <span>
                   {"FastAPI"}
+                </span>
+              </span>
+              <span className="tech">
+                <span className="tech-icon" style={{"--ico": "#e89978"} as CSSProperties}>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg" alt="" loading="lazy" onError={handleIconError} onLoad={handleIconLoad} />
+                  <span className="tech-fallback" aria-hidden="true">
+                    {"DJ"}
+                  </span>
+                </span>
+                <span>
+                  {"Django"}
                 </span>
               </span>
               <span className="tech">
@@ -405,7 +416,7 @@ export function Skills() {
                 {"Databases"}
               </h3>
               <span className="skill-count">
-                {"07"}
+                {"08"}
               </span>
             </div>
             <div className="tech-list">
@@ -440,6 +451,17 @@ export function Skills() {
                 </span>
                 <span>
                   {"MySQL"}
+                </span>
+              </span>
+              <span className="tech">
+                <span className="tech-icon" style={{"--ico": "#e89978"} as CSSProperties}>
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="" loading="lazy" onError={handleIconError} onLoad={handleIconLoad} />
+                  <span className="tech-fallback" aria-hidden="true">
+                    {"SS"}
+                  </span>
+                </span>
+                <span>
+                  {"SQL Server"}
                 </span>
               </span>
               <span className="tech">
