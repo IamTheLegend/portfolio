@@ -14,7 +14,7 @@ export function Hero() {
           </span>
         </h1>
         <p className="intro">
-          {"I build software millions of people depend on: the AWS platform 180K+ partners use to sell, Tesla's HR system for 300K+ employees, and India's national tax portal. Today I lead a 10-engineer team at AWS and put agentic AI to work on Amazon Bedrock."}
+          {"For 10+ years I've built software at real scale: the AWS platform 180K+ partners use to sell, the HR system behind Tesla's 300K+ employees, and front-end work on India's GST platform for 300M+ users. Today I lead projects in an AWS partner program representing ~$5B in business value, and I put agentic AI to work on Amazon Bedrock."}
         </p>
         <div className="hero-actions">
           <a href="#work" className="btn btn-primary">

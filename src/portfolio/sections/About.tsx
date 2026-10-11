@@ -16,10 +16,10 @@ export function About() {
             {"I've spent 10+ years building and running production software at Amazon, Tesla, Intel, Western Digital and Infosys. I'm at home anywhere in the stack, from React front ends and Java or .NET services to AWS infrastructure and data pipelines. I like owning a system from the first design doc all the way through launch and on-call."}
           </p>
           <p className="paragraph">
-            {"Today I lead a 10-engineer team on AWS Partner Central, where 180K+ AWS partners manage how they sell with AWS. Before that, I led the team behind Tesla's HR software, automated compiler bug-hunting at Intel, built self-service analytics at Western Digital, and started out on the front end of India's GST tax portal."}
+            {"At AWS I lead projects on Partner Central, where 180K+ partners manage how they sell with AWS, in a program representing ~$5B in business value. Before that, I led a team of five on Tesla's HR software, automated compiler bug-hunting at Intel, led a team of eight on self-service analytics at Western Digital, and began as a UI engineer on India's GST tax platform."}
           </p>
           <p className="paragraph">
-            {"Teams usually bring me in to make slow things fast, make fragile systems reliable, and help people ship. Recently I co-designed an agentic AI approach to engineering that cut one project's estimate from ~205 to ~120 engineer-weeks and helped bring AI adoption to 98% across ~450 engineers."}
+            {"Teams usually bring me in to make slow things fast, make fragile systems reliable, and help people ship. Recently I co-designed an agentic AI approach to engineering that cut one project's estimate by about 40% and helped bring AI adoption to 98% across ~450 engineers."}
           </p>
         </div>
         <aside className="about-side reveal" aria-label="Career highlights">
@@ -33,10 +33,10 @@ export function About() {
           </div>
           <div className="metric">
             <span className="metric-number">
-              {"57%"}
+              {"~$5B"}
             </span>
             <span className="metric-label">
-              {"Faster load times for the AWS partner console my team builds"}
+              {"Business value of the AWS partner program my projects support"}
             </span>
           </div>
           <div className="metric">
@@ -51,7 +51,7 @@ export function About() {
             <strong>
               {"Beyond the code:"}
             </strong>
-            {" Led teams of 5–10 engineers at Amazon, Tesla and Western Digital. Won Amazon's GenAI Hackathon. M.S. in Computer and Information Science from FIU (3.97 GPA)."}
+            {" Led teams of 5 to 8 engineers across projects at Amazon, Tesla and Western Digital, plus a 10-engineer project at AWS. Won Amazon's GenAI Hackathon and Tesla's Lead with Purpose Award. M.S. in Computer and Information Science, FIU."}
           </div>
         </aside>
       </div>

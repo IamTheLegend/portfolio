@@ -19,7 +19,7 @@ export function Skills() {
             {"03 / Technical skills"}
           </p>
           <h2 className="title">
-            {"Tools I work with."}
+            {"Tech I work with."}
           </h2>
           <p className="lead">
             {"The languages, frameworks and platforms I've used to ship real products, from the front end to the cloud and AI."}
