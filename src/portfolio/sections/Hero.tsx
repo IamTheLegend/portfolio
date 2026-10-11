@@ -5,7 +5,7 @@ export function Hero() {
       <div className="container">
         <div className="status">
           <span className="status-dot"></span>
-          {"Open to senior engineering opportunities"}
+          {"Open to senior and lead engineering roles"}
         </div>
         <h1>
           {"Hi, I'm Prasanth."}
@@ -14,7 +14,7 @@ export function Hero() {
           </span>
         </h1>
         <p className="intro">
-          {"I build reliable, high-performing software across the stack, from cloud platforms and distributed systems to user experiences and practical AI solutions."}
+          {"I build software millions of people depend on: the AWS platform 180K+ partners use to sell, Tesla's HR system for 300K+ employees, and India's national tax portal. Today I lead a 10-engineer team at AWS and put agentic AI to work on Amazon Bedrock."}
         </p>
         <div className="hero-actions">
           <a href="#work" className="btn btn-primary">

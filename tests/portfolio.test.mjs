@@ -19,7 +19,7 @@ test('all five employers and their impact statements remain present', () => {
   for (const name of ['Amazon', 'Tesla', 'Intel', 'Western Digital', 'Infosys']) {
     assert(experience.toLowerCase().includes(name.toLowerCase()), `Missing experience: ${name}`)
   }
-  for (const metric of ['57%', '750K', '4M', '2.5B']) {
+  for (const metric of ['57%', '750K', '4M', '5B', '300M+']) {
     assert(experience.includes(metric), `Missing documented highlight: ${metric}`)
   }
 })

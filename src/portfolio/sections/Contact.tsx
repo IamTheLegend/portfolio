@@ -13,7 +13,7 @@ export function Contact() {
             </span>
           </h2>
           <p className="lead">
-            {"I'm interested in senior full-stack and engineering leadership opportunities. If you'd like to discuss a role or an interesting engineering challenge, I'd be glad to connect."}
+            {"I'm looking for my next senior or lead engineering role, ideally one where the problems are big and the impact is measurable. If that sounds like your team, I'd love to talk."}
           </p>
           <div className="contact-actions">
             <a href="mailto:annam.prasanth.official@gmail.com" className="btn btn-primary">
