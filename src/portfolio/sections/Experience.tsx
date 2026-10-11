@@ -47,23 +47,23 @@ export function Experience() {
                 {"Leading the platform 180K+ AWS partners use to sell with AWS"}
               </h3>
               <p className="career-description">
-                {"I lead a team of 10 engineers on Partner Central 3.0, moving co-sell workflows into a React micro-frontend inside the AWS Console. The program it supports represents roughly $5B in business value, so speed and reliability really matter. I also built a privacy-preserving AWS Clean Rooms pilot that matched ~250K accounts for an initiative tied to ~$400M in estimated revenue."}
+                {"I lead engineering projects on AWS Partner Central, the platform 180K+ partners use to co-sell with AWS, in a program representing ~$5B in business value. The largest so far was Partner Central 3.0, a 10-engineer effort that brought partners' co-sell workflows into the AWS Console."}
               </p>
               <div className="outcomes">
                 <div className="outcome">
                   <strong>
-                    {"57% faster"}
+                    {"~$400M initiative"}
                   </strong>
                   <span>
-                    {"Module load time cut from 4.2s to 1.8s with lazy loading and LCP tuning."}
+                    {"Built the privacy-preserving pilot that matched ~250K AWS and partner accounts for an initiative tied to ~$400M in estimated revenue."}
                   </span>
                 </div>
                 <div className="outcome">
                   <strong>
-                    {"No silent event loss"}
+                    {"2x faster for partners"}
                   </strong>
                   <span>
-                    {"Added dead-letter queues to 27 EventBridge targets on a platform handling ~873K events a day."}
+                    {"Partner Central pages now load more than twice as fast, with monitoring that rolls back bad releases automatically."}
                   </span>
                 </div>
                 <div className="outcome">
@@ -71,7 +71,7 @@ export function Experience() {
                     {"98% AI adoption"}
                   </strong>
                   <span>
-                    {"Co-designed an agentic engineering method used across ~450 engineers. It cut one plan from ~205 to ~120 engineer-weeks."}
+                    {"Co-designed an agentic engineering method now used across ~450 engineers. It cut one project's plan by about 40%."}
                   </span>
                 </div>
               </div>
@@ -86,7 +86,7 @@ export function Experience() {
                   {"AWS"}
                 </span>
                 <span className="tag">
-                  {"EventBridge"}
+                  {"AWS Clean Rooms"}
                 </span>
                 <span className="tag">
                   {"Amazon Bedrock"}
@@ -144,10 +144,10 @@ export function Experience() {
                 </div>
                 <div className="outcome">
                   <strong>
-                    {"3,000+ APIs"}
+                    {"~30% faster HR workflows"}
                   </strong>
                   <span>
-                    {"Optimized across 5 applications, speeding up HR workflows by ~30%."}
+                    {"Optimized 3,000+ APIs across the 5 apps employees and HR use every day."}
                   </span>
                 </div>
               </div>
@@ -223,10 +223,10 @@ export function Experience() {
                 </div>
                 <div className="outcome">
                   <strong>
-                    {"60% smaller logs"}
+                    {"10+ tasks automated"}
                   </strong>
                   <span>
-                    {"Per-run logs cut from 25 MB to 10 MB, with every critical diagnostic kept."}
+                    {"Bug-hunting steps engineers used to do by hand now run on their own."}
                   </span>
                 </div>
               </div>
@@ -296,10 +296,10 @@ export function Experience() {
                 </div>
                 <div className="outcome">
                   <strong>
-                    {"60% faster builds"}
+                    {"60% faster delivery"}
                   </strong>
                   <span>
-                    {"Reusable Angular libraries cut development time 60%, code size 35% and load time 40%."}
+                    {"Shared Angular libraries that other teams adopted cut development time by 60%."}
                   </span>
                 </div>
               </div>
@@ -348,13 +348,13 @@ export function Experience() {
             </div>
             <div className="career-copy">
               <p className="eyebrow small">
-                {"National tax platform · UI engineering"}
+                {"Government tax platform · UI engineering"}
               </p>
               <h3>
-                {"Building the front end of India's GST tax portal"}
+                {"Front-end engineering on India's GST tax platform"}
               </h3>
               <p className="career-description">
-                {"I started my career as a core UI engineer on India's Goods and Services Tax application, which supports 300M+ users. That meant building pages that worked for very different people, on every kind of device, under real deadline pressure."}
+                {"I started my career as one of the core UI engineers on India's Goods and Services Tax application, which supports 300M+ users. My part was building pages that worked for very different people, on every kind of device, under real deadline pressure."}
               </p>
               <div className="outcomes">
                 <div className="outcome">
@@ -362,7 +362,7 @@ export function Experience() {
                     {"300M+ users"}
                   </strong>
                   <span>
-                    {"Supported by the GST application I helped build."}
+                    {"Supported by the GST application I worked on."}
                   </span>
                 </div>
                 <div className="outcome">
