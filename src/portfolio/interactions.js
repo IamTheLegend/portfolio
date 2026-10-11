@@ -15,15 +15,15 @@ const mix3=(a,b,u)=>a.map((v,i)=>lerp(v,b[i],u));
 
 // One entry per anchor, in reading order. Colours continue the V12 chapter palette.
 const CHAPTERS=[
- {sel:'#top',               a:'#e89d85',b:'#6a8bb7',c:'#4a3b6e',focus:[.80,.92],warp:3.2,glow:.90,safe:.72,form:'horizon'},
- {sel:'#about',             a:'#e8a184',b:'#7d8fc4',c:'#55406c',focus:[.86,.52],warp:3.6,glow:.85,safe:.40,form:'spiral'},
+ {sel:'#top',               a:'#9aa8ff',b:'#6a8bb7',c:'#4a3b6e',focus:[.80,.92],warp:3.2,glow:.90,safe:.72,form:'horizon'},
+ {sel:'#about',             a:'#a3adf7',b:'#7d8fc4',c:'#55406c',focus:[.86,.52],warp:3.6,glow:.85,safe:.40,form:'spiral'},
  {sel:'#experience-amazon', a:'#efa15f',b:'#c56e43',c:'#6b3d2a',focus:[.90,.46],warp:3.0,glow:.95,safe:.45,dim:.62,form:'pipeline'},
  {sel:'#experience-tesla',  a:'#e98189',b:'#9c4558',c:'#57304a',focus:[.88,.52],warp:4.0,glow:.90,safe:.45,dim:.8,form:'orgchart'},
  {sel:'#experience-intel',  a:'#79b6ed',b:'#527dd8',c:'#243c66',focus:[.90,.42],warp:2.4,glow:.95,safe:.45,dim:.75,form:'compiler'},
  {sel:'#experience-western',a:'#a18de5',b:'#677fdd',c:'#3a2f6b',focus:[.88,.56],warp:3.4,glow:.90,safe:.45,dim:.62,form:'dashboard'},
  {sel:'#experience-infosys',a:'#69bbbc',b:'#4b92c0',c:'#1f4a55',focus:[.86,.50],warp:2.8,glow:.85,safe:.45,dim:.62,form:'taxform'},
  {sel:'#skills',            a:'#a8a2f1',b:'#6d9bd2',c:'#2f3463',focus:[.50,.04],warp:3.0,glow:.80,safe:.30,form:'sphere'},
- {sel:'#contact',           a:'#eea484',b:'#828ab9',c:'#4a3b6e',focus:[.50,.62],warp:3.4,glow:.90,safe:.55,form:'halo'},
+ {sel:'#contact',           a:'#a6b0ff',b:'#828ab9',c:'#4a3b6e',focus:[.50,.62],warp:3.4,glow:.90,safe:.55,form:'halo'},
 ];
 CHAPTERS.forEach(c=>{c.A=hex(c.a);c.B=hex(c.b);c.Cc=hex(c.c)});
 const LAST=CHAPTERS.length-1;
