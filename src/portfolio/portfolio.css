@@ -70,3 +70,11 @@ body:before{background:none!important}
 #ambient-canvas{box-shadow:none!important;filter:none!important;opacity:1!important}
 .hero,.about,.work{background:transparent!important}
 /* Keep the original timeline, cards and full content; only the decorative animation changes. */
+
+/* V13: a WebGL silk field and a morphing particle constellation replace the V12 line drawings.
+   Both layers are fixed, non-interactive and sit beneath the unchanged content. */
+#ambient-gl{position:fixed;inset:0;z-index:-3;pointer-events:none;opacity:0;transition:opacity 1.4s ease}
+#ambient-gl.ready{opacity:1}
+#ambient-canvas{z-index:-2}
+.grain{opacity:.03}
+html[data-theme=light] .grain{opacity:.022}

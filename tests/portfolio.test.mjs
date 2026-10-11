@@ -24,11 +24,13 @@ test('all five employers and their impact statements remain present', () => {
   }
 })
 
-test('hero animation is 15 percent more transparent without dimming other scenes', () => {
+test('V13 background covers every chapter and has a 2D fallback', () => {
   const motion = read('src/portfolio/interactions.js')
-  assert(motion.includes('drawChapter(0,0.85*(1-clamp((curr-.35)/.65)))'))
-  assert(motion.includes('drawChapter(k,1-eased)'))
-  assert(motion.includes('if(k<7)drawChapter(k+1,eased)'))
+  for (const anchor of ['#top', '#about', '#experience-amazon', '#experience-tesla', '#experience-intel', '#experience-western', '#experience-infosys', '#skills', '#contact']) {
+    assert(motion.includes(`sel:'${anchor}'`), `Missing chapter anchor: ${anchor}`)
+  }
+  assert(motion.includes("getContext('webgl'"), 'WebGL field missing')
+  assert(motion.includes("ctx2=gcv.getContext('2d')"), '2D fallback missing')
 })
 
 test('local resume and bundled technology icons are shipped', () => {
