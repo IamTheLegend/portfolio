@@ -19,7 +19,7 @@ export function Contact() {
             <a href="mailto:annam.prasanth.official@gmail.com" className="btn btn-primary">
               {"Get in touch "}
               <span className="arrow">
-                {"↗"}
+                {"→"}
               </span>
             </a>
             <a href="/Prasanth_Annam_Resume.pdf" download="Prasanth_Annam_Resume.pdf" className="btn">

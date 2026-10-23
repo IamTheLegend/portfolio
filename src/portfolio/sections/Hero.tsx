@@ -20,7 +20,7 @@ export function Hero() {
           <a href="#work" className="btn btn-primary">
             {"Explore my experience "}
             <span className="arrow">
-              {"↗"}
+              {"↓"}
             </span>
           </a>
           <a href="/Prasanth_Annam_Resume.pdf" download="Prasanth_Annam_Resume.pdf" className="btn">

@@ -33,7 +33,7 @@ export function Experience() {
                 <span className="smile"></span>
               </span>
               <p className="job-title">
-                {"Software Development Engineer II"}
+                {"Senior Software Engineer"}
               </p>
               <p className="job-dates">
                 {"Aug 2024 – Present"}
@@ -335,9 +335,6 @@ export function Experience() {
               </p>
               <span className="company-logo infosys-word">
                 {"Infosys"}
-                <span className="infosys-mark">
-                  {"↗"}
-                </span>
               </span>
               <p className="job-title">
                 {"Systems Engineer"}
